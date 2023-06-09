@@ -36,6 +36,7 @@ public class GoogleReCaptcha implements ReCaptchaService {
 
         RestTemplate restTemplate = new RestTemplate();
         ReCaptchaResponse response = restTemplate.postForObject(properties.getUrl(), request, ReCaptchaResponse.class);
+        assert response != null;
 
         logger.info("ReCaptcha response: {}", response);
 

@@ -16,11 +16,14 @@ public class ReCaptchaProperties {
     private final double threshold;
 
     public ReCaptchaProperties(
-            @Value("${google.re-captcha.header:g-recaptcha-response}") String header,
-            @Value("${google.re-captcha.secret}") String secret,
-            @Value("${google.re-captcha.url}") String url,
-            @Value("${google.re-captcha.version:3}") short version,
-            @Value("${google.re-captcha.threshold:0.5}") double threshold) throws Exception {
+            @Value("${google.recaptcha.header:g-recaptcha-response}") String header,
+            @Value("${google.recaptcha.secret:}") String secret,
+            @Value("${google.recaptcha.url:https://www.google.com/recaptcha/api/siteverify}") String url,
+            @Value("${google.recaptcha.version:3}") short version,
+            @Value("${google.recaptcha.threshold:0.5}") double threshold) throws Exception {
+        if ("".equals(secret)) {
+            throw new Exception("reCAPTCHA secret not provided. Please add property 'google.recaptcha.secret' in your configuration.");
+        }
         this.header = header;
         this.secret = secret;
         this.url = url;
