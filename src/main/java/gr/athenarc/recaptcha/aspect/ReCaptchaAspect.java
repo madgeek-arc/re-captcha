@@ -71,8 +71,8 @@ public class ReCaptchaAspect {
             context.setVariable(parameterNames[i], args[i]);
         }
 
-        if (exp.getValue(context) instanceof String recaptchaResponse)
-            return recaptchaResponse;
+        if (exp.getValue(context) instanceof String)
+            return (String) exp.getValue(context);
         throw new InvalidReCaptchaTokenException("ReCaptcha provided is not a String");
     }
 
