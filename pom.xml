@@ -60,4 +60,36 @@
         </dependency>
     </dependencies>
 
+    <scm>
+        <connection>scm:git:ssh://git@github.com:madgeek-arc/reCAPTHCA.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:madgeek-arc/reCAPTHCA.git</developerConnection>
+        <url>https://github.com/madgeek-arc/reCAPTHCA.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>omtd-releases</id>
+            <layout>default</layout>
+            <url>https://repo.openminted.eu/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>omtd-snapshots</id>
+            <layout>default</layout>
+            <url>https://repo.openminted.eu/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
