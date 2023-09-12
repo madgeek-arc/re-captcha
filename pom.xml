@@ -63,8 +63,8 @@
     </dependencies>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com:madgeek-arc/re-captcha.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:madgeek-arc/re-captcha.git</developerConnection>
+        <connection>scm:git:git@github.com:madgeek-arc/re-captcha.git</connection>
+        <developerConnection>scm:git:git@github.com:madgeek-arc/re-captcha.git</developerConnection>
         <url>https://github.com/madgeek-arc/re-captcha.git</url>
         <tag>HEAD</tag>
     </scm>
