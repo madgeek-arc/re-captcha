@@ -3,6 +3,31 @@
 This library handles the server-side verification of a reCAPTCHA response in a Spring-based project.
 It accepts google's response and verifies it. 
 
+## Component metadata
+
+| Field | Value |
+|---|---|
+| Component | reCAPTCHA Spring Integration (`gr.athenarc.recaptcha:recaptcha`) |
+| Type | Supporting service (Java library embedded in a host application, not deployed on its own) |
+| Status | Released (`1.0.0`); `main` is `2.0.0-SNAPSHOT` |
+| Technology | Java 17, Spring Framework 6.2 (`spring-context`, `spring-web`, `spring-aspects`), AspectJ, Jakarta Servlet API 6, Maven |
+| API | No (it protects endpoints of the host application) |
+| Swagger | Not applicable |
+| Deployment | Library (Maven artefact) |
+| Documentation | [docs/](docs/) |
+
+## Role
+
+Supplies an annotation (`@ReCaptcha`) that a Spring web application puts on controller methods to reject
+requests whose reCAPTCHA token fails verification against Google's `siteverify` API.
+
+## Prerequisites
+
+- A Spring 6 / Spring Boot 3 web application (the library uses `jakarta.servlet`), with AspectJ
+  proxying and a JSON message converter (Jackson) available to `RestTemplate`.
+- A reCAPTCHA v2 or v3 secret key from the Google reCAPTCHA admin console.
+- To build: JDK 17+ and Maven 3.
+
 ## How to use:
 
 1. Add the following properties to your application
@@ -15,7 +40,12 @@ google.recaptcha.secret=........
 google.recaptcha.header=g-recaptcha-response
 google.recaptcha.url=https://www.google.com/recaptcha/api/siteverify
 google.recaptcha.version=3 ## Accepted values (2,3)
-google.recaptcha.threshold=0.5 ## 0.0 < threshold < 1.0
+google.recaptcha.threshold=0.5 ## 0.0 <= threshold <= 1.0, checked at startup
+google.recaptcha.connect-timeout-ms=5000
+google.recaptcha.read-timeout-ms=5000
+
+## Optional checks, skipped when unset
+google.recaptcha.hostname=my.site.org ## must match the hostname Google reports for the token
 ```
 
 2. Use the annotation **@EnableReCaptcha** to import the configuration.
@@ -61,3 +91,36 @@ public ResponseEntity<?> myCoolMethod_2(@RequestParam String recaptchaResponse){
         ...
 }
 ```
+
+For reCAPTCHA v3 you can also require the token to have been issued for a specific action:
+
+```java
+@ReCaptcha(action = "submit")
+public ResponseEntity<?> submit(...) {
+        ...
+}
+```
+
+## Build
+
+```bash
+mvn package    # runs the tests and produces target/recaptcha-<version>.jar
+mvn install    # installs it into the local Maven repository
+```
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Configuration](docs/configuration.md)
+- [Integration](docs/integration.md)
+- [Security](docs/security.md)
+- [Development](docs/development.md)
+- [Testing](docs/testing.md)
+- [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
+
+No HTTP API, deployment or operations guides exist because the library is not deployed on its own.
+
+## Licence
+
+Apache License 2.0, see [LICENSE](LICENSE). Maintained by the madgeek-arc team
+(<https://github.com/madgeek-arc/re-captcha>).
