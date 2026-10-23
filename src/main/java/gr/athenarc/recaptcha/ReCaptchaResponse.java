@@ -1,5 +1,7 @@
 package gr.athenarc.recaptcha;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Arrays;
 
 public class ReCaptchaResponse {
@@ -9,6 +11,7 @@ public class ReCaptchaResponse {
     private String action;
     private String challenge_ts;
     private String hostname;
+    @JsonProperty("error-codes")
     private String[] errorCodes;
 
     public ReCaptchaResponse() {
