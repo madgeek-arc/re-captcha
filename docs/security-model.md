@@ -1,4 +1,4 @@
-# reCAPTCHA Spring Integration — Security
+# reCAPTCHA Spring Integration — Security model
 
 Describes version `2.0.0-SNAPSHOT`.
 

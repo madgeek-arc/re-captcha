@@ -41,7 +41,7 @@ the domain being served. Google's documented test keys can be used for local dev
 - Never commit `google.recaptcha.secret`. Inject it at deploy time (environment variable or secret
   store).
 - The library never logs the secret or the token. It logs the Google response at `DEBUG`. See
-  [security.md](security.md).
+  [security-model.md](security-model.md).
 
 ## Notes
 

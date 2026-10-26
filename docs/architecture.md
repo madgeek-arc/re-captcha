@@ -86,7 +86,7 @@ only state, both singletons built at startup.
 
 ## Security
 
-See [security.md](security.md). In short, the shared secret is read from configuration and sent only
+See [security-model.md](security-model.md). In short, the shared secret is read from configuration and sent only
 to the configured verification URL. A failed verification raises HTTP 403.
 
 ## Significant design decisions

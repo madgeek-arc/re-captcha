@@ -100,7 +100,7 @@ mvn install    # installs it into the local Maven repository
 - [Architecture](docs/architecture.md)
 - [Configuration](docs/configuration.md)
 - [Integration](docs/integration.md)
-- [Security](docs/security.md)
+- [Security model](docs/security-model.md) · [Security policy](SECURITY.md)
 - [Development](docs/development.md)
 - [Testing](docs/testing.md)
 - [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
