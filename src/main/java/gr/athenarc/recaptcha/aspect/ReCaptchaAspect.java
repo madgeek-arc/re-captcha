@@ -52,8 +52,7 @@ public class ReCaptchaAspect {
             captchaResponse = getReCaptchaValueFromExpression(point, reCaptchaAnnotation.value());
         }
 
-        logger.debug("ReCaptcha Header: {}={}", properties.getHeader(), captchaResponse);
-        service.verify(captchaResponse);
+        service.verify(captchaResponse, reCaptchaAnnotation.action());
 
         return point.proceed();
     }
