@@ -9,7 +9,6 @@ It accepts google's response and verifies it.
 |---|---|
 | Component | reCAPTCHA Spring Integration (`gr.athenarc.recaptcha:recaptcha`) |
 | Type | Supporting service (Java library embedded in a host application, not deployed on its own) |
-| Status | Released (`1.0.0`); `main` is `2.0.0-SNAPSHOT` |
 | Technology | Java 17, Spring Framework 6.2 (`spring-context`, `spring-web`, `spring-aspects`), AspectJ, Jakarta Servlet API 6, Maven |
 | API | No (it protects endpoints of the host application) |
 | Swagger | Not applicable |
