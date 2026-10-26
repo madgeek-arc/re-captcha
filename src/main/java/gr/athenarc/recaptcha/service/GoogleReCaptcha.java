@@ -5,6 +5,7 @@ import gr.athenarc.recaptcha.exception.InvalidReCaptchaTokenException;
 import gr.athenarc.recaptcha.config.ReCaptchaProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -24,6 +25,7 @@ public class GoogleReCaptcha implements ReCaptchaService {
     private final ReCaptchaProperties properties;
     private final RestTemplate restTemplate;
 
+    @Autowired
     public GoogleReCaptcha(ReCaptchaProperties properties) {
         this(properties, createRestTemplate(properties));
     }
