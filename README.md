@@ -3,18 +3,6 @@
 This library handles the server-side verification of a reCAPTCHA response in a Spring-based project.
 It accepts google's response and verifies it. 
 
-## Component metadata
-
-| Field | Value |
-|---|---|
-| Component | reCAPTCHA Spring Integration (`gr.athenarc.recaptcha:recaptcha`) |
-| Type | Supporting service (Java library embedded in a host application, not deployed on its own) |
-| Technology | Java 17, Spring Framework 6.2 (`spring-context`, `spring-web`, `spring-aspects`), AspectJ, Jakarta Servlet API 6, Maven |
-| API | No (it protects endpoints of the host application) |
-| Swagger | Not applicable |
-| Deployment | Library (Maven artefact) |
-| Documentation | [docs/](docs/) |
-
 ## Role
 
 Supplies an annotation (`@ReCaptcha`) that a Spring web application puts on controller methods to reject
@@ -22,7 +10,7 @@ requests whose reCAPTCHA token fails verification against Google's `siteverify` 
 
 ## Prerequisites
 
-- A Spring 6 / Spring Boot 3 web application (the library uses `jakarta.servlet`), with AspectJ
+- A Spring 6 / Spring Boot 3 web application on Java 17+ (the library uses `jakarta.servlet`), with AspectJ
   proxying and a JSON message converter (Jackson) available to `RestTemplate`.
 - A reCAPTCHA v2 or v3 secret key from the Google reCAPTCHA admin console.
 - To build: JDK 17+ and Maven 3.
