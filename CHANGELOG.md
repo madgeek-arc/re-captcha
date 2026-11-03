@@ -1,36 +1,31 @@
 # Changelog
 
-All notable changes to this project are documented in this file. The format follows
-[Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
-[Semantic Versioning](https://semver.org/).
+## [2.0.0](https://github.com/madgeek-arc/re-captcha/compare/recaptcha-1.0.0...recaptcha-2.0.0) (2026-11-03)
 
-## Unreleased
+### ⚠ BREAKING CHANGES
 
-### Added
-- Optional `google.recaptcha.hostname` check and `@ReCaptcha(action = "...")` check for v3 tokens.
-- Connect/read timeouts for the call to Google (`google.recaptcha.connect-timeout-ms`,
-  `google.recaptcha.read-timeout-ms`, default 5000 ms).
-- `ReCaptchaService#verify(String, String)` (token, expected action).
-- Unit tests for token verification and property validation.
-- Repository documentation (`docs/`), contribution guide and this changelog.
+* ReCaptchaService implementations must implement
+  verify(String, String). The ReCaptchaProperties constructor takes three
+  additional arguments (hostname, connect and read timeouts). A threshold
+  outside 0.0-1.0 or a non-positive timeout now fails at startup.
+* requires Java 17 and Spring 6. log4j-core is no longer
+  a transitive dependency; consumers relying on it must declare it.
 
-### Changed
-- **Breaking:** requires Java 17 and Spring Framework 6 (the code already used `jakarta.servlet`).
-- **Breaking:** `ReCaptchaService#verify(String, String)` is the abstract method; `verify(String)` is a
-  default method delegating to it, so custom implementations must implement the two-argument form.
-- **Breaking:** the `ReCaptchaProperties` constructor takes the hostname and the connect/read timeouts.
-- **Breaking:** `google.recaptcha.threshold` outside 0.0–1.0, or a non-positive timeout, now fails startup.
-- The Google response is logged at `DEBUG` instead of `INFO`, and the token is no longer logged.
-- Releases are published to `repo.madgik.di.uoa.gr`.
+### Bug Fixes
 
-### Fixed
-- Google's `error-codes` are now deserialised and logged.
-- A missing token or an empty siteverify response is rejected with HTTP 403 instead of failing with an
-  error.
+* harden reCAPTCHA token verification ([2c2ac04](https://github.com/madgeek-arc/re-captcha/commit/2c2ac04c8092595187ae0e255c0f37c8144829c8))
+* let Spring construct GoogleReCaptcha ([33f9719](https://github.com/madgeek-arc/re-captcha/commit/33f9719967943ce216a01ee19a980587144086c9))
+* map Google's error-codes field ([1cc604d](https://github.com/madgeek-arc/re-captcha/commit/1cc604d280d25f4c8ccd6fd678f694bd2efdce55))
 
-### Removed
-- **Breaking:** `log4j-core` (compile scope) and `log4j-to-slf4j` dependencies; consumers that relied on
-  `log4j-core` transitively must declare it.
+### Build System
+
+* align POM with the Spring 6 / Jakarta code base ([deb904e](https://github.com/madgeek-arc/re-captcha/commit/deb904e942bb9108bf7b5a6bd98c220e1bb6814c))
+
+### Upgrade notes
+
+* A request with a missing token, or one whose siteverify response is empty, is rejected with HTTP 403 instead of failing with an error
+* New optional properties: `google.recaptcha.hostname` (checks the token's hostname), `google.recaptcha.connect-timeout-ms` and `google.recaptcha.read-timeout-ms` (default 5000). For v3 tokens, `@ReCaptcha(action = "...")` checks the token's action
+* The siteverify response is logged at `DEBUG` instead of `INFO`, and the token is no longer logged
 
 ## [1.0.0](https://github.com/madgeek-arc/re-captcha/commits/recaptcha-1.0.0) (2023-09-12)
 
