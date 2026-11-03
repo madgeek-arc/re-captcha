@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0](https://github.com/madgeek-arc/re-captcha/compare/recaptcha-1.0.0...recaptcha-2.0.0) (2026-11-03)
+## [2.0.0](https://github.com/madgeek-arc/re-captcha/compare/recaptcha-1.0.0...2.0.0) (2026-11-03)
 
 ### ⚠ BREAKING CHANGES
 
